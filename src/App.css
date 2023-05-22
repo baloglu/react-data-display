@@ -1,42 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap');
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: "Fira Sans";
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+table {
+  border-collapse: collapse;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+table th,
+table td {
+  padding: 0 32px;
+  border: 1px solid beige;
+  font-weight: bolder;
+}
+table th {
+  font-size: 26px;
+  background-color: lightslategrey;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+table tbody tr:nth-child(even) {
+  background-color: darkslategray;
 }
 
-.card {
-  padding: 2em;
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #4caf50;
+  color: beige;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
+.button:hover {
+  background-color: #45a049;
+}
+
+.button:active {
+  background-color: #3e8e41;
+}
+
+.search-field {
+  width: 300px;
+  height: 40px;
+  font-size: 28px;
 }
