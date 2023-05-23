@@ -5,12 +5,11 @@ import { useState, useEffect } from "react";
 function MeteoriteContainer() {
   const [meteorites, setMeteorites] = useState([]);
   const [page, setPage] = useState(0);
-  // added search term with useState
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch(
-      `https://data.nasa.gov/api/id/gh4g-9sfh.json?$limit=20&$offset=${
+      `https://data.nasa.gov/resource/gh4g-9sfh.json?$q=${searchTerm}&$limit=20&$offset=${
         page * 10
       }&$where=name%20like%20%27%25${searchTerm}%25%27`
     )
@@ -24,7 +23,6 @@ function MeteoriteContainer() {
       });
   }, [page, searchTerm]);
 
-  // we set the search to be equal to the typed in value here
   const handleSearch = (value) => {
     setSearchTerm(value);
   };
@@ -38,18 +36,8 @@ function MeteoriteContainer() {
     }
   }
 
-  // here is where the search is filtered by any value in search bar
-  const filteredMeteorites = meteorites.filter((meteorite) =>
-    meteorite.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  // currently search only filters through any results on the screen.
-  // it does not filter through all 45k results. we will need to filter 
-  // from api search query for this to work correctly
-
   return (
     <>
-    {/* added proper search term and handle search function */}
       <SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
 
       <table>
