@@ -13,7 +13,7 @@ function MeteoriteContainer() {
 
   useEffect(() => {
     fetch(
-      `https://data.nasa.gov/resource/gh4g-9sfh.json?$q=${searchTerm}&$limit=20&$offset=${
+      `https://data.nasa.gov/resource/gh4g-9sfh.json?$q=${searchTerm}&$limit=10&$offset=${
         page * 10
       }&$where=name like %27%25${searchTerm}%25%27`
     )

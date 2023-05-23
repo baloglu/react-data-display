@@ -14,10 +14,10 @@ function MainMap({locations }) {
     }
     
     const { isLoaded } = useLoadScript({googleMapsApiKey: api_key})
-    
+    const center = useMemo(()=> (locations[0]), [locations[0]]) // { lat: 38.44, lng: 27.16 } izmir
     if(!isLoaded) return <div>Loading map</div>
     return (
-        <GoogleMap zoom={10} center={{ lat: 38.44, lng: 27.16 }} mapContainerClassName="map-container">
+        <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
             {
                 locations.map(location => {
                     return <Marker position={location} />
