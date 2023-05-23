@@ -12,7 +12,7 @@ function MeteoriteContainer() {
     fetch(
       `https://data.nasa.gov/api/id/gh4g-9sfh.json?$limit=20&$offset=${
         page * 10
-      }`
+      }&$where=name%20like%20%27%25${searchTerm}%25%27`
     )
       .then((result) => {
         result.json().then((newResult) => {
@@ -22,7 +22,7 @@ function MeteoriteContainer() {
       .catch((err) => {
         console.log(err);
       });
-  }, [page]);
+  }, [page, searchTerm]);
 
   // we set the search to be equal to the typed in value here
   const handleSearch = (value) => {
@@ -64,7 +64,7 @@ function MeteoriteContainer() {
         </thead>
         <tbody>
           {/* changed from meteorites to filteredMeteorites */}
-          {filteredMeteorites.map((meteorite, index) => {
+          {meteorites.map((meteorite, index) => {
             return (
               <Meteorite
                 meteorite={meteorite}
