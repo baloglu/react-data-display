@@ -5,19 +5,20 @@ import MainMap from "./Map";
 import { useState, useEffect } from "react";
 
 function MeteoriteContainer() {
-  const [meteorites, setMeteorites] = useState([]);
-  const [page, setPage] = useState(0);
+    const [meteorites, setMeteorites] = useState([]);
+    const [page, setPage] = useState(0);
     const [searchTerm, setSearchTerm] = useState("");
     const [locations, setLocations] = useState([])
-    
+    const data = [{name: 'Page A', uv: 200, pv: 2400, amt: 2400},{name: 'Page B', uv: 400, pv: 2400, amt: 2400}, {name: 'Page C', uv: 300, pv: 2400, amt: 2400}];
 
   useEffect(() => {
     fetch(
-      `https://data.nasa.gov/resource/gh4g-9sfh.json?$q=${searchTerm}&$limit=10&$offset=${
+      `https://data.nasa.gov/resource/gh4g-9sfh.json?$limit=10&$offset=${
         page * 10
       }&$where=name like %27%25${searchTerm}%25%27`
     )
       .then((result) => {
+        console.log(result)
         result.json().then((newResult) => {
             setMeteorites(newResult);
             setLocations(getLocations(newResult))
@@ -67,7 +68,8 @@ function MeteoriteContainer() {
           {/* changed from meteorites to filteredMeteorites */}
           {meteorites.map((meteorite, index) => {
             return (
-              <Meteorite
+                <Meteorite
+                    key={index}
                     meteorite={meteorite}
                 className={index % 2 === 0 ? "" : "table-row-odd"}
               />
@@ -81,7 +83,8 @@ function MeteoriteContainer() {
       <p className="button" onClick={nextPage}>
         Next
           </p>
-          <MainMap locations={ locations } />
+
+          <MainMap className="main-map" locations={locations} />
     </>
   );
 }
