@@ -5,7 +5,8 @@ import { useState, useEffect } from "react";
 function MeteoriteContainer() {
   const [meteorites, setMeteorites] = useState([]);
   const [page, setPage] = useState(0);
-  //const [resultPerPage, setResultPerPage] = useState(10)
+  // added search term with useState
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch(
@@ -23,6 +24,11 @@ function MeteoriteContainer() {
       });
   }, [page]);
 
+  // we set the search to be equal to the typed in value here
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+  };
+
   function nextPage() {
     setPage(page + 1);
   }
@@ -32,9 +38,15 @@ function MeteoriteContainer() {
     }
   }
 
+  // here is where the search is filtered by any value in search bar
+  const filteredMeteorites = meteorites.filter((meteorite) =>
+    meteorite.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
-      <SearchField />
+    {/* added proper search term and handle search function */}
+      <SearchField searchTerm={searchTerm} handleSearch={handleSearch} />
 
       <table>
         <thead>
@@ -47,7 +59,8 @@ function MeteoriteContainer() {
           </tr>
         </thead>
         <tbody>
-          {meteorites.map((meteorite, index) => {
+          {/* changed from meteorites to filteredMeteorites */}
+          {filteredMeteorites.map((meteorite, index) => {
             return (
               <Meteorite
                 meteorite={meteorite}
