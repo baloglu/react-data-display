@@ -43,6 +43,10 @@ function MeteoriteContainer() {
     meteorite.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // currently search only filters through any results on the screen.
+  // it does not filter through all 45k results. we will need to filter 
+  // from api search query for this to work correctly
+
   return (
     <>
     {/* added proper search term and handle search function */}
