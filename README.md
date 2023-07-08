@@ -25,4 +25,4 @@ In order to build more complicated UI's we can take advantage of pre-built 3rd p
 
   - **nb** React Leaflet v3 is incompatible with React v18. At the time of writing you'll need to install v4 which is still in beta. Use this install command `npm i react-leaflet@4.0.0-beta.0`
 
-- [React Bootstrap](https://react-bootstrap.github.io/) React components based on the popular Bootstrap CSS framework.
+
